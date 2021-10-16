@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">WoltTask</string>
+    <string name="delivery_fee_calculator_string">Delivery fee Calculator</string>
+    <string name="cart_value">Cart Value</string>
+    <string name="cart_value_et">Cart Value (€)</string>
+    <string name="delivery_distance">Devlivery distance</string>
+    <string name="time">Time</string>
+    <string name="amount_of_items">Amount of items</string>
+    <string name="delivery_distance_et">Delivery distance(m)</string>
+    <string name="dd_mm_yyyy">DD/MM/YYYY</string>
+    <string name="calculate_delivery_price">Calculate delivery price</string>
+    <string name="delivery_price">Delivery price :</string>
+    <string name="select_a_time">Select a time</string>
+</resources>
