@@ -2,7 +2,6 @@ package com.example.wolttask
 
 import org.junit.Assert
 import org.junit.Test
-import java.util.*
 
 class DeliveryCostHelperTest {
     private val deliveryCostHelper = DeliveryCostHelper()
@@ -65,15 +64,47 @@ class DeliveryCostHelperTest {
     }
 
     @Test
+    fun deliveryFeeNormalizationTest() {
+
+        // delivery fee is 10€
+        var deliveryFee = 10f
+        Assert.assertEquals(deliveryCostHelper.deliveryFeeNormalization(deliveryFee), 10f)
+
+        // delivery fee is 15€
+        deliveryFee = 15f
+        Assert.assertEquals(deliveryCostHelper.deliveryFeeNormalization(deliveryFee), 15f)
+
+        // delivery fee is 18€
+        deliveryFee = 18f
+        Assert.assertEquals(deliveryCostHelper.deliveryFeeNormalization(deliveryFee), 15f)
+
+        // delivery fee is 0€
+        deliveryFee = 0f
+        Assert.assertEquals(deliveryCostHelper.deliveryFeeNormalization(deliveryFee), 0f)
+
+        // delivery fee is -18€
+        deliveryFee = -18f
+        Assert.assertEquals(deliveryCostHelper.deliveryFeeNormalization(deliveryFee), 0f)
+
+    }
+
+
+    @Test
     fun isRushHourTest() {
 
         Assert.assertTrue(deliveryCostHelper.isRushHour(16,0,0))
+
         Assert.assertTrue(deliveryCostHelper.isRushHour(15,0,0))
+
         Assert.assertTrue(deliveryCostHelper.isRushHour(19,0,0))
+
         Assert.assertFalse(deliveryCostHelper.isRushHour(13,0,0))
+
         Assert.assertFalse(deliveryCostHelper.isRushHour(19,1,0))
 
     }
+
+
 
 
 }
