@@ -27,15 +27,15 @@ class DeliveryCostHelperTest {
     fun getAmountOfItemsSurchargeTest() {
 
         // amount of items is exactly 4
-        var amountOfItem = 4f
+        var amountOfItem = 4
         Assert.assertEquals(deliveryCostHelper.getAmountOfItemsSurcharge(amountOfItem), 0f)
 
         // amount of items is greater than 5
-        amountOfItem = 10f
+        amountOfItem = 10
         Assert.assertEquals(deliveryCostHelper.getAmountOfItemsSurcharge(amountOfItem), 3f)
 
         // amount of items is equal to 5
-        amountOfItem = 5f
+        amountOfItem = 5
         Assert.assertEquals(deliveryCostHelper.getAmountOfItemsSurcharge(amountOfItem), 0.5f)
 
     }
@@ -158,6 +158,24 @@ class DeliveryCostHelperTest {
 
     }
 
+    @Test
+    fun totalDeliveryFeeCalculatorTest() {
+
+        /* when cart value is 100€
+        delivery distance is 1000m
+        amount of items is 4
+        time is Wednesday 15 o'clock
+         */
+        val time = Calendar.getInstance()
+        time[Calendar.DAY_OF_WEEK] = 3
+        time[Calendar.HOUR] = 15
+        time[Calendar.MINUTE] = 0
+        time[Calendar.SECOND] = 0
+
+        Assert.assertEquals(deliveryCostHelper.totalDeliveryFeeCalculator(100f,1000f,4, time), 0f)
+
+
+    }
 
 
 

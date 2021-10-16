@@ -13,7 +13,7 @@ class DeliveryCostHelper {
         else -> 0f
     }
 
-    fun getAmountOfItemsSurcharge(amountOfItems: Float) = when {
+    fun getAmountOfItemsSurcharge(amountOfItems: Int) = when {
         amountOfItems >= 5 -> (amountOfItems - 4) * 0.5f
         else -> 0f
     }
@@ -37,6 +37,31 @@ class DeliveryCostHelper {
     fun rushHourMultiplier(isRushHours:Boolean, totalFees: Float) = if (isRushHours) totalFees * 1.1f else totalFees
 
     fun isRushHour(calendar: Calendar,currentTimeHours: Int, currentTimeMinutes: Int,currentTimeSeconds: Int) = (currentTimeHours in 15..18 && calendar.get(Calendar.DAY_OF_WEEK) == 5) || (currentTimeHours == 19 && currentTimeMinutes == 0 && currentTimeSeconds == 0)
+
+
+    fun totalDeliveryFeeCalculator(cartValue: Float, deliveryDistance: Float, amountOfItems: Int, time:Calendar)  =
+        if (cartValueHundredOrGreater(cartValue) == 0f) {
+            0f
+        } else {
+            val totalDeliveryFees = getCartValueSurcharge(cartValue) + getAmountOfItemsSurcharge(amountOfItems) + travelDistanceFeeCalculator(deliveryDistance)
+            when(isRushHour(time,time[Calendar.HOUR],time[Calendar.MINUTE],time[Calendar.SECOND])){
+
+                true -> deliveryFeeNormalization(rushHourMultiplier(true,totalDeliveryFees))
+                false -> deliveryFeeNormalization(totalDeliveryFees)
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
   /*  fun isRushHour(calendar: Calendar): Boolean {
         val startHour = Calendar.getInstance()
