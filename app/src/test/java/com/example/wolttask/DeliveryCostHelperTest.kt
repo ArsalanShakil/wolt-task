@@ -2,6 +2,7 @@ package com.example.wolttask
 
 import org.junit.Assert
 import org.junit.Test
+import java.util.*
 
 class DeliveryCostHelperTest {
     private val deliveryCostHelper = DeliveryCostHelper()
@@ -58,6 +59,8 @@ class DeliveryCostHelperTest {
         distance = 1501f
         Assert.assertEquals(deliveryCostHelper.travelDistanceFeeCalculator(distance), 4f)
 
+        // If the delivery distance is 800 meters, the delivery fee is: 2€
+        //total delivery fee => 2€
         distance = 800f
         Assert.assertEquals(deliveryCostHelper.travelDistanceFeeCalculator(distance), 2f)
 
@@ -88,19 +91,70 @@ class DeliveryCostHelperTest {
 
     }
 
+    @Test
+    fun cartValueHundredOrGreaterTest() {
+
+        // cart value is 50€
+        var cartValue = 50f
+        Assert.assertEquals(deliveryCostHelper.cartValueHundredOrGreater(cartValue), 50f)
+
+        // cart value is 100€
+        cartValue = 100f
+        Assert.assertEquals(deliveryCostHelper.cartValueHundredOrGreater(cartValue), 0f)
+
+        // cart value is 18€
+        cartValue = 150f
+        Assert.assertEquals(deliveryCostHelper.cartValueHundredOrGreater(cartValue), 0f)
+
+    }
+
+    @Test
+    fun rushHourMultiplierTest() {
+
+        // is rush hour = true and total fees is 50€
+        Assert.assertEquals(deliveryCostHelper.rushHourMultiplier(true,50f), 55f)
+
+        // is rush hour = false and total fees is 50€
+        Assert.assertEquals(deliveryCostHelper.rushHourMultiplier(false, 50f), 50f)
+
+        // is rush hour = false and total fees is 10€
+        Assert.assertEquals(deliveryCostHelper.rushHourMultiplier(true,10f), 11f)
+
+    }
+
+
 
     @Test
     fun isRushHourTest() {
 
-        Assert.assertTrue(deliveryCostHelper.isRushHour(16,0,0))
+        // if the time is 16 o'clock
+        var dayOfWeek = Calendar.getInstance()
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 3
+        Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,16,0,0))
 
-        Assert.assertTrue(deliveryCostHelper.isRushHour(15,0,0))
+        // if the time is 15 o'clock
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 1
+        Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,15,0,0))
 
-        Assert.assertTrue(deliveryCostHelper.isRushHour(19,0,0))
+        // if the time is 19 o'clock
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 5
+        Assert.assertTrue(deliveryCostHelper.isRushHour(dayOfWeek,19,0,0))
 
-        Assert.assertFalse(deliveryCostHelper.isRushHour(13,0,0))
+        // if the time is 16 o'clock
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 5
+        Assert.assertTrue(deliveryCostHelper.isRushHour(dayOfWeek,16,0,0))
 
-        Assert.assertFalse(deliveryCostHelper.isRushHour(19,1,0))
+        // if the time is 15 o'clock
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 5
+        Assert.assertTrue(deliveryCostHelper.isRushHour(dayOfWeek,15,0,0))
+
+        // if the time is 13 o'clock
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 6
+        Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,13,0,0))
+
+        // if the time is 19:01 o'clock
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 5
+        Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,19,1,0))
 
     }
 

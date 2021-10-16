@@ -31,12 +31,12 @@ class DeliveryCostHelper {
 
     fun deliveryFeeNormalization(deliveryFee: Float) = deliveryFee.coerceIn(0f, 15f)
 
-    fun cartValueGreaterThan100(cartValue: Float) =
-        if (getCartValueSurcharge(cartValue) >= 100) 0f else cartValue
+    fun cartValueHundredOrGreater(cartValue: Float) =
+        if (cartValue >= 100) 0f else cartValue
 
     fun rushHourMultiplier(isRushHours:Boolean, totalFees: Float) = if (isRushHours) totalFees * 1.1f else totalFees
 
-    fun isRushHour(currentTimeHours: Int, currentTimeMinutes: Int,currentTimeSeconds: Int) = (currentTimeHours >= 15 && currentTimeHours <= 18) || (currentTimeHours == 19 && currentTimeMinutes == 0 && currentTimeSeconds == 0)
+    fun isRushHour(calendar: Calendar,currentTimeHours: Int, currentTimeMinutes: Int,currentTimeSeconds: Int) = (currentTimeHours in 15..18 && calendar.get(Calendar.DAY_OF_WEEK) == 5) || (currentTimeHours == 19 && currentTimeMinutes == 0 && currentTimeSeconds == 0)
 
   /*  fun isRushHour(calendar: Calendar): Boolean {
         val startHour = Calendar.getInstance()
