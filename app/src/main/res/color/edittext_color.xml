@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/wolt_blue" android:state_focused="true"/>
-    <item android:color="@color/wolt_dark_grey"/>
+    <item android:color="@color/wolt_interaction_color" android:state_focused="true"/>
+    <item android:color="@color/wolt_interaction_color" android:state_focused="true"/>
+
+    <item android:color="@color/wolt_dark_grey_700"/>
 
 </selector>
