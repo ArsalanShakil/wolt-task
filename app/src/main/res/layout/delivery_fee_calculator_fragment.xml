@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".DeliveryFeeCalculatorFragment">
+        tools:context=".ui.deliveryfee.DeliveryFeeCalculatorFragment">
 
 
         <ImageView
@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/deliveryFeeTv">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/cardValueEt"
+                android:id="@+id/cartValueEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
@@ -84,23 +84,25 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout3"
+            android:id="@+id/timeTextInput"
             style="@style/CustomEditText"
             android:layout_width="302dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="@string/time"
+            android:hint="@string/date_time"
             app:hintTextColor="@color/wolt_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/timeEt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="date"
-                android:textColor="@color/black" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/timeEt"
+                    android:ems="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:focusable="false"
+                    android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,7 +121,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/amount_of_items"
+                android:id="@+id/amountOfItemsEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -128,7 +130,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/finishRunBtn"
+            android:id="@+id/calculateDevliveryPriceBtn"
             android:layout_width="302dp"
             android:layout_height="62dp"
             android:layout_marginTop="40dp"
@@ -140,7 +142,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+            app:layout_constraintTop_toBottomOf="@+id/timeTextInput"
             app:rippleColor="@color/wolt_blue"
             tools:ignore="TextContrastCheck" />
 
@@ -158,21 +160,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/finishRunBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/calculateDevliveryPriceBtn" />
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
-            android:contentDescription="@string/select_a_time"
-            android:minHeight="48dp"
-            android:src="@drawable/ic_baseline_calendar_today_24"
-            app:layout_constraintBottom_toTopOf="@+id/finishRunBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5"
-            app:layout_constraintVertical_bias="0.35000002" />
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"

@@ -46,22 +46,22 @@ class DeliveryCostHelperTest {
     /*   If the delivery distance is 1499 meters, the delivery fee is: 2€
          base fee + 1€ for the additional 500 m => 3€
           */
-        var distance = 1499f
+        var distance = 1499
         Assert.assertEquals(deliveryCostHelper.travelDistanceFeeCalculator(distance), 3f)
 
         // If the delivery distance is 1500 meters, the delivery fee is: 2€
         //base fee + 1€ for the additional 500 m => 3€
-        distance = 1500f
+        distance = 1500
         Assert.assertEquals(deliveryCostHelper.travelDistanceFeeCalculator(distance), 3f)
 
         // If the delivery distance is 1501 meters, the delivery fee is: 2€
         //base fee + 1€ for the first 500 m + 1€ for the second 500 m => 4€
-        distance = 1501f
+        distance = 1501
         Assert.assertEquals(deliveryCostHelper.travelDistanceFeeCalculator(distance), 4f)
 
         // If the delivery distance is 800 meters, the delivery fee is: 2€
         //total delivery fee => 2€
-        distance = 800f
+        distance = 800
         Assert.assertEquals(deliveryCostHelper.travelDistanceFeeCalculator(distance), 2f)
 
     }
@@ -128,7 +128,7 @@ class DeliveryCostHelperTest {
     fun isRushHourTest() {
 
         // if the time is 16 o'clock
-        var dayOfWeek = Calendar.getInstance()
+        val dayOfWeek = Calendar.getInstance()
         dayOfWeek[Calendar.DAY_OF_WEEK] = 3
         Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,16,0,0))
 
@@ -137,23 +137,23 @@ class DeliveryCostHelperTest {
         Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,15,0,0))
 
         // if the time is 19 o'clock
-        dayOfWeek[Calendar.DAY_OF_WEEK] = 5
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 6
         Assert.assertTrue(deliveryCostHelper.isRushHour(dayOfWeek,19,0,0))
 
         // if the time is 16 o'clock
-        dayOfWeek[Calendar.DAY_OF_WEEK] = 5
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 6
         Assert.assertTrue(deliveryCostHelper.isRushHour(dayOfWeek,16,0,0))
 
         // if the time is 15 o'clock
-        dayOfWeek[Calendar.DAY_OF_WEEK] = 5
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 6
         Assert.assertTrue(deliveryCostHelper.isRushHour(dayOfWeek,15,0,0))
 
         // if the time is 13 o'clock
-        dayOfWeek[Calendar.DAY_OF_WEEK] = 6
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 7
         Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,13,0,0))
 
         // if the time is 19:01 o'clock
-        dayOfWeek[Calendar.DAY_OF_WEEK] = 5
+        dayOfWeek[Calendar.DAY_OF_WEEK] = 6
         Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,19,1,0))
 
     }
@@ -167,15 +167,70 @@ class DeliveryCostHelperTest {
         time is Wednesday 15 o'clock
          */
         val time = Calendar.getInstance()
-        time[Calendar.DAY_OF_WEEK] = 3
-        time[Calendar.HOUR] = 15
+        time[Calendar.DAY_OF_WEEK] = 4
+        time[Calendar.HOUR_OF_DAY] = 15
         time[Calendar.MINUTE] = 0
         time[Calendar.SECOND] = 0
 
-        Assert.assertEquals(deliveryCostHelper.totalDeliveryFeeCalculator(100f,1000f,4, time), 0f)
+        Assert.assertEquals(deliveryCostHelper.totalDeliveryFeeCalculator(100f,1000,4, time), 0f)
+
+
+        /* when cart value is 120€
+        delivery distance is 1500m
+        amount of items is 8
+        time is Friday 16 o'clock
+         */
+        time[Calendar.DAY_OF_WEEK] = 6
+        time[Calendar.HOUR_OF_DAY] = 16
+        time[Calendar.MINUTE] = 0
+        time[Calendar.SECOND] = 0
+
+        Assert.assertEquals(deliveryCostHelper.totalDeliveryFeeCalculator(120f,1500,8, time), 0f)
+
+
+
+        /* when cart value is 15€
+        delivery distance is 500m
+        amount of items is 4
+        time is Monday 16 o'clock
+         */
+        time[Calendar.DAY_OF_WEEK] = 2
+        time[Calendar.HOUR_OF_DAY] = 16
+        time[Calendar.MINUTE] = 0
+        time[Calendar.SECOND] = 0
+
+        Assert.assertEquals(deliveryCostHelper.totalDeliveryFeeCalculator(15f,500,4, time), 2f)
+
+
+        /* when cart value is 1€
+        delivery distance is 9500m
+        amount of items is 35
+        time is Friday 18 o'clock
+         */
+        time[Calendar.DAY_OF_WEEK] = 6
+        time[Calendar.HOUR_OF_DAY] = 18
+        time[Calendar.MINUTE] = 0
+        time[Calendar.SECOND] = 0
+
+        Assert.assertEquals(deliveryCostHelper.totalDeliveryFeeCalculator(1f,9500,35, time), 15f)
+
+
+        /* when cart value is 1€
+        delivery distance is 1500m
+        amount of items is 4
+        time is Saturday 18 o'clock
+        */
+        time[Calendar.DAY_OF_WEEK] = 7
+        time[Calendar.HOUR_OF_DAY] = 18
+        time[Calendar.MINUTE] = 0
+        time[Calendar.SECOND] = 0
+
+        Assert.assertEquals(deliveryCostHelper.totalDeliveryFeeCalculator(1f,1500,4, time), 12f)
+
 
 
     }
+
 
 
 
