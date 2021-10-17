@@ -12,5 +12,7 @@
     <color name="wolt_grey">#E5E5E5</color>
     <color name="wolt_dark_grey">#B8B8B8</color>
     <color name="wolt_dark_grey_500">#929292</color>
+    <color name="wolt_button_interaction">#439CDB</color>
+
 
 </resources>
