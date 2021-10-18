@@ -96,15 +96,15 @@ class DeliveryCostHelperTest {
 
         // cart value is 50€
         var cartValue = 50f
-        Assert.assertEquals(deliveryCostHelper.cartValueHundredOrGreater(cartValue), 50f)
+        Assert.assertFalse(deliveryCostHelper.cartValueHundredOrGreater(cartValue))
 
         // cart value is 100€
         cartValue = 100f
-        Assert.assertEquals(deliveryCostHelper.cartValueHundredOrGreater(cartValue), 0f)
+        Assert.assertTrue(deliveryCostHelper.cartValueHundredOrGreater(cartValue))
 
         // cart value is 18€
         cartValue = 150f
-        Assert.assertEquals(deliveryCostHelper.cartValueHundredOrGreater(cartValue), 0f)
+        Assert.assertTrue(deliveryCostHelper.cartValueHundredOrGreater(cartValue))
 
     }
 
