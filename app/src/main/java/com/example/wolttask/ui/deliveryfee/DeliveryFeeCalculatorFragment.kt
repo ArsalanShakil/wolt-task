@@ -21,8 +21,10 @@ class DeliveryFeeCalculatorFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: DeliveryFeeCalculatorFragmentBinding = DataBindingUtil.inflate(inflater,
-            R.layout.delivery_fee_calculator_fragment, container, false)
+        val binding: DeliveryFeeCalculatorFragmentBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.delivery_fee_calculator_fragment, container, false
+        )
         binding.viewModel = viewModel
         return binding.root
     }
@@ -37,7 +39,11 @@ class DeliveryFeeCalculatorFragment : Fragment() {
 
         calculateDevliveryPriceBtn.setOnClickListener {
             viewModel.calculateFee()
-            deliveryPriceTv.text = getString(R.string.delivery_price_value, viewModel.totalFee.toString())
+            val deliveryFees = String.format(
+                getString(R.string.delivery_price_value),
+                viewModel.totalFee
+            )
+            deliveryPriceTv.text = deliveryFees
         }
 
         viewModel.dateString.observe(viewLifecycleOwner, {

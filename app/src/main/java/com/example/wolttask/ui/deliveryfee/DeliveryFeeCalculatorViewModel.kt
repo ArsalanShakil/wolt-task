@@ -15,30 +15,40 @@ class DeliveryFeeCalculatorViewModel : ViewModel() {
     var totalFee: Float = 0f
     private val deliveryCostHelper = DeliveryCostHelper()
     private val date = Calendar.getInstance()
-    var dateString = MutableLiveData<String>()
+    var dateString = MutableLiveData<String>("")
     private val dateFormatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
 
     init {
         isEnabled.run {
             addSource(cartValue) { cartValue ->
                 isEnabled.value =
-                    getEnabled(cartValue, deliveryDistance.value!!, amountOfItems.value!!)
+                    getEnabled(cartValue, deliveryDistance.value!!, amountOfItems.value!!, dateString.value!!)
             }
 
             addSource(deliveryDistance) { deliveryDistance ->
                 isEnabled.value =
-                    getEnabled(cartValue.value!!, deliveryDistance, amountOfItems.value!!)
+                    getEnabled(cartValue.value!!, deliveryDistance, amountOfItems.value!!, dateString.value!!)
             }
 
             addSource(amountOfItems) { amountOfItems ->
                 isEnabled.value =
-                    getEnabled(cartValue.value!!, deliveryDistance.value!!, amountOfItems)
+                    getEnabled(cartValue.value!!, deliveryDistance.value!!, amountOfItems, dateString.value!!)
+            }
+
+            addSource(dateString) { dateString ->
+                isEnabled.value =
+                    getEnabled(cartValue.value!!, deliveryDistance.value!!, amountOfItems.value!!, dateString)
             }
         }
     }
 
-    private fun getEnabled(cartValue: String, deliveryDistance: String, amountOfItems: String) =
-        cartValue.isNotBlank() && deliveryDistance.isNotBlank() && amountOfItems.isNotBlank()
+    private fun getEnabled(
+        cartValue: String,
+        deliveryDistance: String,
+        amountOfItems: String,
+        date: String
+    ) =
+        cartValue.isNotBlank() && deliveryDistance.isNotBlank() && amountOfItems.isNotBlank() && date.isNotBlank()
 
     fun calculateFee() {
         totalFee =
