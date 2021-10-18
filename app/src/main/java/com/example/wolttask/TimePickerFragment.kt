@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.wolttask.ui.deliveryfee.DeliveryFeeCalculatorViewModel
 import java.util.*
 
-class TimePickerHelper : DialogFragment(), TimePickerDialog.OnTimeSetListener {
+class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
     private val viewModel: DeliveryFeeCalculatorViewModel by activityViewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

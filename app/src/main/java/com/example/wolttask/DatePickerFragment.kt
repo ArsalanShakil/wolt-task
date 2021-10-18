@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.wolttask.ui.deliveryfee.DeliveryFeeCalculatorViewModel
 import java.util.*
 
-class DatePickerHelper : DialogFragment(), DatePickerDialog.OnDateSetListener {
+class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
     private val viewModel: DeliveryFeeCalculatorViewModel by activityViewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -31,7 +31,7 @@ class DatePickerHelper : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
     }
     private fun showTimePickerDialog(v: View) {
-        val newFragment = TimePickerHelper()
+        val newFragment = TimePickerFragment()
         newFragment.show(requireActivity().supportFragmentManager, "timePicker")
     }
 }
