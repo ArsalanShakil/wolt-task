@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import java.util.*
 
 class DeliveryFeeCalculatorViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
 
     val selectedDateHourMinute: MutableLiveData<Calendar> = MutableLiveData(Calendar.getInstance())
     val dateTimeObserver: MutableLiveData<Int> = MutableLiveData(0)
@@ -14,7 +13,7 @@ class DeliveryFeeCalculatorViewModel : ViewModel() {
 
         selectedDateHourMinute.value?.set(Calendar.HOUR_OF_DAY, hour)
         selectedDateHourMinute.value?.set(Calendar.MINUTE, minute)
-        dateTimeObserver.value?.plus(1)
+        dateTimeObserver.value = dateTimeObserver.value?.plus(1)
 
     }
 
@@ -22,6 +21,6 @@ class DeliveryFeeCalculatorViewModel : ViewModel() {
         selectedDateHourMinute.value?.set(Calendar.DAY_OF_MONTH, day)
         selectedDateHourMinute.value?.set(Calendar.MONTH, month)
         selectedDateHourMinute.value?.set(Calendar.YEAR, year)
-        dateTimeObserver.value?.plus(1)
+        dateTimeObserver.value = dateTimeObserver.value?.plus(1)
     }
 }

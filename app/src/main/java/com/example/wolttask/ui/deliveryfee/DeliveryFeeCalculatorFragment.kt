@@ -45,12 +45,6 @@ class DeliveryFeeCalculatorFragment : Fragment() {
         }
 
 
-        val cartValue = view.findViewById<EditText>(R.id.cartValueEt)?.text?.toString() ?: " "
-        val deliveryDistance =
-            view.findViewById<EditText>(R.id.deliveryDistanceEt)?.text?.toString() ?: " "
-        val amountOfItems =
-            view.findViewById<EditText>(R.id.amountOfItemsEt)?.text?.toString() ?: " "
-
 
         viewModel.selectedDateHourMinute.observe(viewLifecycleOwner, {
             date = it
@@ -59,15 +53,28 @@ class DeliveryFeeCalculatorFragment : Fragment() {
             view.findViewById<EditText>(R.id.timeEt).setText(s)
             //once that is done show the time and date in edit text
         })
+        viewModel.dateTimeObserver.observe(viewLifecycleOwner, {
+            Log.d("observer", it.toString())
+            val s = "${date[Calendar.DAY_OF_MONTH]}  ${date.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())}  ${date[Calendar.YEAR]}, ${date[Calendar.HOUR_OF_DAY]}:${date[Calendar.MINUTE]}"
+            //the date is not updating when the user pickes the date
+            view.findViewById<EditText>(R.id.timeEt).setText(s)
+            //once that is done show the time and date in edit text
+        })
 
 
 
         view.findViewById<Button>(R.id.calculateDevliveryPriceBtn).setOnClickListener {
+            val cartValue = view.findViewById<EditText>(R.id.cartValueEt).text.toString()
+            val deliveryDistance =
+                view.findViewById<EditText>(R.id.deliveryDistanceEt).text.toString()
+            val amountOfItems =
+                view.findViewById<EditText>(R.id.amountOfItemsEt).text.toString()
+
             Log.d(
                 "dateTime button",
                 "${date[Calendar.DAY_OF_MONTH]}-${date[Calendar.MONTH]}-${date[Calendar.YEAR]}, ${date[Calendar.DAY_OF_WEEK]} || ${date[Calendar.HOUR_OF_DAY]}:${date[Calendar.MINUTE]}"
             )
-            if (cartValue.isNullOrBlank() || deliveryDistance.isNullOrBlank() || amountOfItems.isNullOrBlank()) {
+            if (cartValue.isBlank() || deliveryDistance.isBlank() || amountOfItems.isBlank()) {
                 view.findViewById<TextView>(R.id.deliveryPriceTv).text = getString(R.string.please_fill_all_fields)
             } else {
                 val totalFee =

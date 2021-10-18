@@ -19,9 +19,13 @@ class DatePickerHelper : DialogFragment(), DatePickerDialog.OnDateSetListener {
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
+        c.add(Calendar.DATE, 0) // Add 0 days to Calendar
 
-        // Create a new instance of DatePickerDialog and return it
-        return DatePickerDialog(requireActivity(), this, year, month, day)
+        // Create a new instance of DatePickerDialog and return ii
+        val datePickerDialog = DatePickerDialog(requireActivity(), this, year, month, day)
+        val newDate = c.time
+        datePickerDialog.datePicker.minDate = newDate.time - newDate.time % (24 * 60 * 60 * 1000)
+        return datePickerDialog
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
@@ -35,3 +39,4 @@ class DatePickerHelper : DialogFragment(), DatePickerDialog.OnDateSetListener {
         newFragment.show(requireActivity().supportFragmentManager, "timePicker")
     }
 }
+
