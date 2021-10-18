@@ -25,6 +25,7 @@ class DeliveryFeeCalculatorFragment : Fragment() {
 
 
     private val viewModel: DeliveryFeeCalculatorViewModel by activityViewModels()
+    var date = Calendar.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,49 +35,57 @@ class DeliveryFeeCalculatorFragment : Fragment() {
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
         view.findViewById<EditText>(R.id.timeEt).setOnClickListener {
-            showTimePickerDialog(view)
             showDatePickerDialog(view)
+
         }
+
+
+        val cartValue = view.findViewById<EditText>(R.id.cartValueEt)?.text?.toString() ?: " "
+        val deliveryDistance =
+            view.findViewById<EditText>(R.id.deliveryDistanceEt)?.text?.toString() ?: " "
+        val amountOfItems =
+            view.findViewById<EditText>(R.id.amountOfItemsEt)?.text?.toString() ?: " "
+
+        viewModel.selectedDateHourMinute.observe(viewLifecycleOwner, {
+            date = it
+            val s = date[Calendar.DAY_OF_MONTH].toString()
+            view.findViewById<EditText>(R.id.timeEt).setText(s)
+        })
+
+
 
         view.findViewById<Button>(R.id.calculateDevliveryPriceBtn).setOnClickListener {
-            val cartValue = view.findViewById<EditText>(R.id.cartValueEt)?.text?.toString() ?: "null"
-            val deliveryDistance = view.findViewById<EditText>(R.id.deliveryDistanceEt)?.text?.toString() ?: "null"
-            val amountOfItems = view.findViewById<EditText>(R.id.amountOfItemsEt)?.text?.toString() ?: "null"
-
-            viewModel.selectedDateHourMinute.observe(viewLifecycleOwner,{
-                Log.d("dateTime","${it[Calendar.DAY_OF_MONTH]}-${it[Calendar.MONTH]}-${it[Calendar.YEAR]}, ${it[Calendar.DAY_OF_WEEK]} || ${it[Calendar.HOUR_OF_DAY]}:${it[Calendar.MINUTE]}")
-
+            Log.d(
+                "dateTime button",
+                "${date[Calendar.DAY_OF_MONTH]}-${date[Calendar.MONTH]}-${date[Calendar.YEAR]}, ${date[Calendar.DAY_OF_WEEK]} || ${date[Calendar.HOUR_OF_DAY]}:${date[Calendar.MINUTE]}"
+            )
+            if (cartValue.isNullOrBlank() || deliveryDistance.isNullOrBlank() || amountOfItems.isNullOrBlank()) {
+                view.findViewById<TextView>(R.id.deliveryPriceTv).text = getString(R.string.please_fill_all_fields)
+            } else {
                 val totalFee =
-                    deliveryCostHelper.totalDeliveryFeeCalculator(cartValue.toFloat(),deliveryDistance.toInt(),amountOfItems.toInt(),it)
-
-                view.findViewById<TextView>(R.id.deliveryPriceTv).text = totalFee.toString()
-
-            })
-
-
-
-
+                    deliveryCostHelper.totalDeliveryFeeCalculator(
+                        cartValue.toFloat(),
+                        deliveryDistance.toInt(),
+                        amountOfItems.toInt(),
+                        date
+                    )
+                view.findViewById<TextView>(R.id.deliveryPriceTv).text =
+                    resources.getString(R.string.delivery_price_value, totalFee.toString())
+            }
         }
 
 
     }
-    private fun showTimePickerDialog(v: View) {
-        val newFragment = TimePickerHelper()
-        newFragment.show(requireActivity().supportFragmentManager, "timePicker")
-    }
+
     private fun showDatePickerDialog(v: View) {
         val newFragment = DatePickerHelper()
         newFragment.show(requireActivity().supportFragmentManager, "datePicker")
     }
-
-
-
 
 
 }

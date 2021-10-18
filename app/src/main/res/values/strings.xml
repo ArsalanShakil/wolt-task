@@ -10,6 +10,8 @@
     <string name="dd_mm_yyyy">DD/MM/YYYY</string>
     <string name="calculate_delivery_price">Calculate delivery price</string>
     <string name="delivery_price">Delivery price :</string>
+    <string name="delivery_price_value">Delivery price : %s€</string>
     <string name="select_a_time">Select a time</string>
     <string name="date_time"><![CDATA[Date & time]]></string>
+    <string name="please_fill_all_fields">Please fill all fields</string>
 </resources>

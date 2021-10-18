@@ -3,6 +3,7 @@ package com.example.wolttask
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.view.View
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
@@ -26,5 +27,11 @@ class DatePickerHelper : DialogFragment(), DatePickerDialog.OnDateSetListener {
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
         // Do something with the date chosen by the user
         viewModel.selectDate(day,month,year)
+        showTimePickerDialog(view)
+
+    }
+    private fun showTimePickerDialog(v: View) {
+        val newFragment = TimePickerHelper()
+        newFragment.show(requireActivity().supportFragmentManager, "timePicker")
     }
 }

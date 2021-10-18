@@ -10,19 +10,20 @@
         android:layout_height="wrap_content"
         tools:context=".ui.deliveryfee.DeliveryFeeCalculatorFragment">
 
-
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/imageViewScooter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:src="@drawable/ic_delivery_scooter"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription"
-             />
+            app:lottie_autoPlay="true"
+            app:lottie_speed="0.3"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/delivery_animation" />
+
 
         <TextView
             android:id="@+id/deliveryFeeTv"
@@ -178,19 +179,7 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="357dp" />
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.115"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@drawable/ic_delivery_scooter" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
