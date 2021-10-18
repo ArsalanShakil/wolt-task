@@ -1,21 +1,20 @@
 package com.example.wolttask.ui.deliveryfee
 
+
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-
-
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.wolttask.DatePickerHelper
 import com.example.wolttask.DeliveryCostHelper
 import com.example.wolttask.R
-import com.example.wolttask.TimePickerHelper
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -25,7 +24,7 @@ class DeliveryFeeCalculatorFragment : Fragment() {
 
 
     private val viewModel: DeliveryFeeCalculatorViewModel by activityViewModels()
-    var date = Calendar.getInstance()
+    private var date: Calendar = Calendar.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +39,7 @@ class DeliveryFeeCalculatorFragment : Fragment() {
 
 
         view.findViewById<EditText>(R.id.timeEt).setOnClickListener {
-            showDatePickerDialog(view)
+            showDatePickerDialog()
 
         }
 
@@ -48,15 +47,15 @@ class DeliveryFeeCalculatorFragment : Fragment() {
 
         viewModel.selectedDateHourMinute.observe(viewLifecycleOwner, {
             date = it
-            val s = date[Calendar.DAY_OF_MONTH].toString()
-            //the date is not updating when the user pickes the date
-            view.findViewById<EditText>(R.id.timeEt).setText(s)
-            //once that is done show the time and date in edit text
+            val setValueDateTime = date[Calendar.DAY_OF_MONTH].toString()
+            view.findViewById<EditText>(R.id.timeEt).setText(setValueDateTime)
         })
+
         viewModel.dateTimeObserver.observe(viewLifecycleOwner, {
             Log.d("observer", it.toString())
-            val s = "${date[Calendar.DAY_OF_MONTH]}  ${date.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())}  ${date[Calendar.YEAR]}, ${date[Calendar.HOUR_OF_DAY]}:${date[Calendar.MINUTE]}"
-            //the date is not updating when the user pickes the date
+            val simpleDateFormat = SimpleDateFormat("dd LLLL yyyy, HH:mm",Locale.getDefault())
+                val s = simpleDateFormat.format(date.time)
+            //the date is not updating when the user picks the date
             view.findViewById<EditText>(R.id.timeEt).setText(s)
             //once that is done show the time and date in edit text
         })
@@ -84,15 +83,16 @@ class DeliveryFeeCalculatorFragment : Fragment() {
                         amountOfItems.toInt(),
                         date
                     )
+
                 view.findViewById<TextView>(R.id.deliveryPriceTv).text =
-                    resources.getString(R.string.delivery_price_value, totalFee.toString())
+                    resources.getString(R.string.delivery_price_value, totalFee)
             }
         }
 
 
     }
 
-    private fun showDatePickerDialog(v: View) {
+    private fun showDatePickerDialog() {
         val newFragment = DatePickerHelper()
         newFragment.show(requireActivity().supportFragmentManager, "datePicker")
     }

@@ -13,6 +13,7 @@ class DeliveryFeeCalculatorViewModel : ViewModel() {
 
         selectedDateHourMinute.value?.set(Calendar.HOUR_OF_DAY, hour)
         selectedDateHourMinute.value?.set(Calendar.MINUTE, minute)
+        selectedDateHourMinute.value?.set(Calendar.SECOND, 0)
         dateTimeObserver.value = dateTimeObserver.value?.plus(1)
 
     }
