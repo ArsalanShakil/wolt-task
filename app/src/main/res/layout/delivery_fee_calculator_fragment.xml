@@ -66,8 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:text="@={viewModel.deliveryDistance}"
-                    android:textColor="@color/black" />
+                    android:text="@={viewModel.deliveryDistance}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,8 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:text="@={viewModel.cartValue}"
-                    android:textColor="@color/black" />
+                    android:text="@={viewModel.cartValue}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,8 +112,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:focusable="false"
-                    android:inputType="time"
-                    android:textColor="@color/black" />
+                    android:inputType="time" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,17 +135,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:text="@={viewModel.amountOfItems}"
-                    android:textColor="@color/black" />
+                    android:text="@={viewModel.amountOfItems}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/calculateDevliveryPriceBtn"
-                android:enabled="false"
                 android:layout_width="302dp"
                 android:layout_height="62dp"
                 android:layout_marginTop="40dp"
+                android:enabled="false"
                 android:text="@string/calculate_delivery_price"
                 android:textAllCaps="false"
                 android:textSize="16sp"
@@ -176,21 +172,6 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/calculateDevliveryPriceBtn" />
-
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="55dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="357dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

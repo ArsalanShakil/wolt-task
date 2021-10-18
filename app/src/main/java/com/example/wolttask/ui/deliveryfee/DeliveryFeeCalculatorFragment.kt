@@ -34,7 +34,7 @@ class DeliveryFeeCalculatorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         timeEt.setOnClickListener {
-            showDatePickerDialog(view)
+            showDatePickerDialog()
         }
 
         calculateDevliveryPriceBtn.setOnClickListener {
@@ -56,7 +56,7 @@ class DeliveryFeeCalculatorFragment : Fragment() {
 
     }
 
-    private fun showDatePickerDialog(v: View) {
+    private fun showDatePickerDialog() {
         val newFragment = DatePickerFragment()
         newFragment.show(requireActivity().supportFragmentManager, "datePicker")
     }

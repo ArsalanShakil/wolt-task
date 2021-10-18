@@ -15,8 +15,8 @@ class DeliveryFeeCalculatorViewModel : ViewModel() {
     var totalFee: Float = 0f
     private val deliveryCostHelper = DeliveryCostHelper()
     private val date = Calendar.getInstance()
-    var dateString = MutableLiveData<String>("")
-    private val dateFormatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
+    var dateString = MutableLiveData("")
+    private val dateFormatter = SimpleDateFormat("dd LLLL yyyy, HH:mm", Locale.getDefault())
 
     init {
         isEnabled.run {
