@@ -50,7 +50,6 @@ class DeliveryFeeCalculatorViewModel : ViewModel() {
             )
     }
 
-
     fun selectHourMinute(hour: Int, minute: Int) {
         date.set(Calendar.HOUR_OF_DAY, hour)
         date.set(Calendar.MINUTE, minute)
