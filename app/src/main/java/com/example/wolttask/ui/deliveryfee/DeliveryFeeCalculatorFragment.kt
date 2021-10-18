@@ -51,10 +51,13 @@ class DeliveryFeeCalculatorFragment : Fragment() {
         val amountOfItems =
             view.findViewById<EditText>(R.id.amountOfItemsEt)?.text?.toString() ?: " "
 
+
         viewModel.selectedDateHourMinute.observe(viewLifecycleOwner, {
             date = it
             val s = date[Calendar.DAY_OF_MONTH].toString()
+            //the date is not updating when the user pickes the date
             view.findViewById<EditText>(R.id.timeEt).setText(s)
+            //once that is done show the time and date in edit text
         })
 
 
