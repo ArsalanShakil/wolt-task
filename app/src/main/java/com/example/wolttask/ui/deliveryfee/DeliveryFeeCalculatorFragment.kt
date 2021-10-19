@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.wolttask.DatePickerFragment
 import com.example.wolttask.R
+import com.example.wolttask.TimePickerFragment
 import com.example.wolttask.databinding.DeliveryFeeCalculatorFragmentBinding
 import kotlinx.android.synthetic.main.delivery_fee_calculator_fragment.*
 
@@ -36,7 +37,9 @@ class DeliveryFeeCalculatorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         dateTimeEt.setOnClickListener {
+            showTimePickerDialog()
             showDatePickerDialog()
+
         }
 
         calculateDeliveryPriceBtn.setOnClickListener {
@@ -63,6 +66,11 @@ class DeliveryFeeCalculatorFragment : Fragment() {
     private fun showDatePickerDialog() {
         val newFragment = DatePickerFragment()
         newFragment.show(requireActivity().supportFragmentManager, "datePicker")
+    }
+
+    private fun showTimePickerDialog() {
+        val newFragment = TimePickerFragment()
+        newFragment.show(requireActivity().supportFragmentManager, "timePicker")
     }
 
     private fun setStyle(isEnabled: Boolean) {

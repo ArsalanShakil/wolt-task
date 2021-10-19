@@ -30,12 +30,8 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
         // Do something with the date chosen by the user
         viewModel.selectDate(day,month,year)
-        showTimePickerDialog()
 
     }
-    private fun showTimePickerDialog() {
-        val newFragment = TimePickerFragment()
-        newFragment.show(requireActivity().supportFragmentManager, "timePicker")
-    }
+
 }
 

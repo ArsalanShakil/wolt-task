@@ -47,13 +47,14 @@ class DeliveryFeeCalculatorViewModel : ViewModel() {
         deliveryDistance: String,
         amountOfItems: String,
         date: String
-    ) = if (cartValue.isNotBlank() && cartValue != "." && deliveryDistance.isNotBlank() && amountOfItems.isNotBlank() && date.isNotBlank()){
-        (cartValue.toFloat().toInt() != 0) &&
+    ) = if (cartValue.isNotBlank() && deliveryDistance.isNotBlank() && amountOfItems.isNotBlank() && date.isNotBlank()){
+        val s = cartValue != "."  && ((cartValue.toFloat() > 0f && cartValue.toFloat().toInt() == 0) || cartValue.toFloat().toInt() != 0 ) &&
             (cartValue.toFloat() != 0f) &&
             (deliveryDistance.toFloat().toInt() != 0) &&
             (deliveryDistance.toFloat() != 0f) &&
             (amountOfItems.toFloat().toInt() != 0) &&
             (amountOfItems.toFloat() != 0f)
+        s
     } else{
 
         false
