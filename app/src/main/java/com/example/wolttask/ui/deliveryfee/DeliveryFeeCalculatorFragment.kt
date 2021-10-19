@@ -9,17 +9,16 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import com.example.wolttask.DatePickerFragment
+import com.example.wolttask.ui.DatePickerFragment
 import com.example.wolttask.R
-import com.example.wolttask.TimePickerFragment
+import com.example.wolttask.ui.TimePickerFragment
 import com.example.wolttask.databinding.DeliveryFeeCalculatorFragmentBinding
 import kotlinx.android.synthetic.main.delivery_fee_calculator_fragment.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class DeliveryFeeCalculatorFragment : Fragment() {
-    private val viewModel: DeliveryFeeCalculatorViewModel by activityViewModels()
-
+    private val viewModel: DeliveryFeeCalculatorViewModel by sharedViewModel()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

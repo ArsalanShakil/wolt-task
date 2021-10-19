@@ -1,7 +1,8 @@
-package com.example.wolttask
+package com.example.wolttask.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.wolttask.R
 
 
 class MainActivity : AppCompatActivity() {

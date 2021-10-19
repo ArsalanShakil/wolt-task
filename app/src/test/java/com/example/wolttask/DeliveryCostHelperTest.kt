@@ -1,5 +1,6 @@
 package com.example.wolttask
 
+import com.example.wolttask.helpers.DeliveryCostHelper
 import org.junit.Assert
 import org.junit.Test
 import java.util.*
@@ -127,32 +128,32 @@ class DeliveryCostHelperTest {
     @Test
     fun isRushHourTest() {
 
-        // if the time is 16 o'clock
+        // if the time is 16 o'clock and Tuesday
         val dayOfWeek = Calendar.getInstance()
         dayOfWeek[Calendar.DAY_OF_WEEK] = 3
         Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,16,0,0))
 
-        // if the time is 15 o'clock
+        // if the time is 15 o'clock and Sunday
         dayOfWeek[Calendar.DAY_OF_WEEK] = 1
         Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,15,0,0))
 
-        // if the time is 19 o'clock
+        // if the time is 19 o'clock and Friday
         dayOfWeek[Calendar.DAY_OF_WEEK] = 6
         Assert.assertTrue(deliveryCostHelper.isRushHour(dayOfWeek,19,0,0))
 
-        // if the time is 16 o'clock
+        // if the time is 16 o'clock and Friday
         dayOfWeek[Calendar.DAY_OF_WEEK] = 6
         Assert.assertTrue(deliveryCostHelper.isRushHour(dayOfWeek,16,0,0))
 
-        // if the time is 15 o'clock
+        // if the time is 15 o'clock and Friday
         dayOfWeek[Calendar.DAY_OF_WEEK] = 6
         Assert.assertTrue(deliveryCostHelper.isRushHour(dayOfWeek,15,0,0))
 
-        // if the time is 13 o'clock
+        // if the time is 13 o'clock and Saturday
         dayOfWeek[Calendar.DAY_OF_WEEK] = 7
         Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,13,0,0))
 
-        // if the time is 19:01 o'clock
+        // if the time is 19:01 o'clock and Friday
         dayOfWeek[Calendar.DAY_OF_WEEK] = 6
         Assert.assertFalse(deliveryCostHelper.isRushHour(dayOfWeek,19,1,0))
 

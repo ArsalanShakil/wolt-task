@@ -1,4 +1,4 @@
-package com.example.wolttask
+package com.example.wolttask.ui
 
 import android.app.Dialog
 import android.app.TimePickerDialog
@@ -8,10 +8,11 @@ import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.wolttask.ui.deliveryfee.DeliveryFeeCalculatorViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.util.*
 
 class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
-    private val viewModel: DeliveryFeeCalculatorViewModel by activityViewModels()
+    private val viewModel: DeliveryFeeCalculatorViewModel by sharedViewModel()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the current time as the default values for the picker
