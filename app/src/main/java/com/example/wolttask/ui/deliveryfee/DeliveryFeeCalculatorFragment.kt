@@ -1,10 +1,12 @@
 package com.example.wolttask.ui.deliveryfee
 
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -52,10 +54,8 @@ class DeliveryFeeCalculatorFragment : Fragment() {
 
         viewModel.isEnabled.observe(viewLifecycleOwner, {
             calculateDeliveryPriceBtn.isEnabled = it
-            when(it){
-                false -> deliveryPriceTv.text = getString(R.string.please_fill_all_fields)
-                true -> deliveryPriceTv.text = getString(R.string.delivery_price)
-            }
+            setStyle(it)
+
         })
 
     }
@@ -63,6 +63,18 @@ class DeliveryFeeCalculatorFragment : Fragment() {
     private fun showDatePickerDialog() {
         val newFragment = DatePickerFragment()
         newFragment.show(requireActivity().supportFragmentManager, "datePicker")
+    }
+
+    private fun setStyle(isEnabled: Boolean) {
+        if (isEnabled) {
+            calculateDeliveryPriceBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.wolt_dark_blue))
+            deliveryPriceTv.setTypeface(null, Typeface.BOLD)
+            deliveryPriceTv.text = getString(R.string.delivery_price)
+        } else {
+            calculateDeliveryPriceBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.wolt_dark_grey))
+            deliveryPriceTv.setTypeface(null, Typeface.NORMAL)
+            deliveryPriceTv.text = getString(R.string.please_fill_all_fields)
+        }
     }
 
 }
