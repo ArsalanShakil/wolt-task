@@ -68,18 +68,15 @@ class DeliveryFeeCalculatorViewModel(private val deliveryCostHelper : DeliveryCo
         date: String
     ) =
         if (cartValue.isNotBlank() && deliveryDistance.isNotBlank() && amountOfItems.isNotBlank() && date.isNotBlank()) {
-            val s = cartValue != "." && ((cartValue.toFloat() > 0f && cartValue.toFloat()
-                .toInt() == 0) || cartValue.toFloat().toInt() != 0) &&
-                    (cartValue.toFloat() != 0f) &&
-                    (deliveryDistance.toFloat().toInt() != 0) &&
-                    (deliveryDistance.toFloat() != 0f) &&
-                    (amountOfItems.toFloat().toInt() != 0) &&
-                    (amountOfItems.toFloat() != 0f)
-            s
-        } else {
+            cartValue != "." &&
+            ((cartValue.toFloat() > 0f && cartValue.toFloat().toInt() == 0) || cartValue.toFloat().toInt() != 0) &&
+            (cartValue.toFloat() != 0f) &&
+            (deliveryDistance.toFloat().toInt() != 0) &&
+            (deliveryDistance.toFloat() != 0f) &&
+            (amountOfItems.toFloat().toInt() != 0) &&
+            (amountOfItems.toFloat() != 0f)
 
-            false
-        }
+        } else false
 
 
     fun calculateFee() {
