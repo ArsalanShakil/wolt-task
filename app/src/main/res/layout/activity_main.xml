@@ -10,9 +10,11 @@
         android:id="@+id/fragmentContainerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:name="com.example.wolttask.ui.deliveryfee.DeliveryFeeCalculatorFragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/delivery_fee_calculator_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

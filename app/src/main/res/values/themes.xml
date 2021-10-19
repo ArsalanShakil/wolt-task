@@ -20,4 +20,10 @@
         <item name="boxStrokeColor">@color/edittext_color</item>
 
     </style>
+
+    <style name="SplashTheme" parent="Theme.WoltTask">
+        <item name="android:windowBackground">@drawable/splashscreen</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
 </resources>

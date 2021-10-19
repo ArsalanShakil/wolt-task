@@ -20,7 +20,7 @@
             tools:context=".ui.deliveryfee.DeliveryFeeCalculatorFragment">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/imageViewScooter"
+                android:id="@+id/animateViewScooter"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginTop="32dp"
@@ -31,7 +31,7 @@
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/delivery_animation"
-                app:lottie_speed="0.3" />
+                app:lottie_speed="0.35" />
 
 
             <TextView
@@ -45,33 +45,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewScooter" />
+                app:layout_constraintTop_toBottomOf="@+id/animateViewScooter" />
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout4"
-                style="@style/CustomEditText"
-                android:layout_width="302dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="@string/delivery_distance_et"
-                app:hintTextColor="@color/wolt_dark_blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/deliveryDistanceEt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:text="@={viewModel.deliveryDistance}" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+                android:id="@+id/cartValueTextInputLayout"
                 style="@style/CustomEditText"
                 android:layout_width="302dp"
                 android:layout_height="wrap_content"
@@ -93,32 +71,31 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/timeTextInput"
+                android:id="@+id/deliveryDistanceTextInputLayout"
                 style="@style/CustomEditText"
                 android:layout_width="302dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="@string/date_time"
+                android:hint="@string/delivery_distance_et"
                 app:hintTextColor="@color/wolt_dark_blue"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
+                app:layout_constraintTop_toBottomOf="@+id/cartValueTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/timeEt"
+                    android:id="@+id/deliveryDistanceEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:inputType="time" />
+                    android:inputType="number"
+                    android:text="@={viewModel.deliveryDistance}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout5"
+                android:id="@+id/amountOfItemsTextInputLayout"
                 style="@style/CustomEditText"
                 android:layout_width="302dp"
                 android:layout_height="wrap_content"
@@ -128,7 +105,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
+                app:layout_constraintTop_toBottomOf="@+id/deliveryDistanceTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/amountOfItemsEt"
@@ -139,8 +116,30 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dateTimeTextInputLayout"
+                style="@style/CustomEditText"
+                android:layout_width="302dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/date_time"
+                app:hintTextColor="@color/wolt_dark_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/amountOfItemsTextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dateTimeEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="time" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/calculateDevliveryPriceBtn"
+                android:id="@+id/calculateDeliveryPriceBtn"
                 android:layout_width="302dp"
                 android:layout_height="62dp"
                 android:layout_marginTop="40dp"
@@ -153,17 +152,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/timeTextInput"
+                app:layout_constraintTop_toBottomOf="@+id/dateTimeTextInputLayout"
                 app:rippleColor="@color/wolt_blue"
                 tools:ignore="TextContrastCheck" />
 
             <TextView
 
                 android:id="@+id/deliveryPriceTv"
-                android:layout_width="wrap_content"
+                android:layout_width="302dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:layout_marginBottom="48dp"
+                android:gravity="center"
                 android:text="@string/delivery_price"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -171,7 +171,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calculateDevliveryPriceBtn" />
+                app:layout_constraintTop_toBottomOf="@+id/calculateDeliveryPriceBtn" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

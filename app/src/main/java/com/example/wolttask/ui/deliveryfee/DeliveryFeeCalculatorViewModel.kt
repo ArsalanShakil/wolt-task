@@ -47,8 +47,21 @@ class DeliveryFeeCalculatorViewModel : ViewModel() {
         deliveryDistance: String,
         amountOfItems: String,
         date: String
-    ) =
-        cartValue.isNotBlank() && deliveryDistance.isNotBlank() && amountOfItems.isNotBlank() && date.isNotBlank()
+    ) = if (cartValue.isNotBlank()  && deliveryDistance.isNotBlank() && amountOfItems.isNotBlank() && date.isNotBlank()){
+        (cartValue.toFloat().toInt() != 0) &&
+            (cartValue.toFloat() != 0f) &&
+            (deliveryDistance.toFloat().toInt() != 0) &&
+            (deliveryDistance.toFloat() != 0f) &&
+            (amountOfItems.toFloat().toInt() != 0) &&
+            (amountOfItems.toFloat() != 0f)
+    } else{
+
+        false
+    }
+
+
+
+
 
     fun calculateFee() {
         totalFee =
@@ -63,8 +76,8 @@ class DeliveryFeeCalculatorViewModel : ViewModel() {
     fun selectHourMinute(hour: Int, minute: Int) {
         date.set(Calendar.HOUR_OF_DAY, hour)
         date.set(Calendar.MINUTE, minute)
+        date.set(Calendar.SECOND, 0)
         dateString.value = dateFormatter.format(date.time)
-        cartValue.value = "10"
     }
 
     fun selectDate(day: Int, month: Int, year: Int) {

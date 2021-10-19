@@ -13,5 +13,5 @@
     <string name="delivery_price_value">Delivery price : %.2f€</string>
     <string name="select_a_time">Select a time</string>
     <string name="date_time"><![CDATA[Date & time]]></string>
-    <string name="please_fill_all_fields">Please fill all fields</string>
+    <string name="please_fill_all_fields">Please fill all fields and do not set any field to 0</string>
 </resources>

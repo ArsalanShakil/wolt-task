@@ -33,11 +33,11 @@ class DeliveryFeeCalculatorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        timeEt.setOnClickListener {
+        dateTimeEt.setOnClickListener {
             showDatePickerDialog()
         }
 
-        calculateDevliveryPriceBtn.setOnClickListener {
+        calculateDeliveryPriceBtn.setOnClickListener {
             viewModel.calculateFee()
             val deliveryFees = String.format(
                 getString(R.string.delivery_price_value),
@@ -47,11 +47,15 @@ class DeliveryFeeCalculatorFragment : Fragment() {
         }
 
         viewModel.dateString.observe(viewLifecycleOwner, {
-            timeEt.setText(it)
+            dateTimeEt.setText(it)
         })
 
         viewModel.isEnabled.observe(viewLifecycleOwner, {
-            calculateDevliveryPriceBtn.isEnabled = it
+            calculateDeliveryPriceBtn.isEnabled = it
+            when(it){
+                false -> deliveryPriceTv.text = getString(R.string.please_fill_all_fields)
+                true -> deliveryPriceTv.text = getString(R.string.delivery_price)
+            }
         })
 
     }
