@@ -1,11 +1,11 @@
 package com.example.wolttask.ui.deliveryfee
 
 import com.example.wolttask.helpers.DeliveryCostHelper
+import com.google.common.truth.Truth.assertThat
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
-import com.google.common.truth.Truth.assertThat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -53,26 +53,26 @@ class DeliveryFeeCalculatorViewModelTest {
         Assert.assertTrue(viewModel.getEnabled("9","400","4","20 November 2021, 15:15"))
 
     }
-
- /*   @Test
+/*
+    @Test
     fun selectHourMinuteTest() {
-        val time = Calendar.getInstance()
-        time[Calendar.DAY_OF_WEEK] = 4
-        time[Calendar.HOUR_OF_DAY] = 15
-        time[Calendar.MINUTE] = 0
-        time[Calendar.SECOND] = 0
-        time[Calendar.DAY_OF_MONTH] = 16
-        time[Calendar.MONTH] = 12
-        time[Calendar.YEAR] = 2021
+        val dateTime = Calendar.getInstance()
+        dateTime[Calendar.DAY_OF_WEEK] = 4
+        dateTime[Calendar.HOUR_OF_DAY] = 15
+        dateTime[Calendar.MINUTE] = 0
+        dateTime[Calendar.SECOND] = 0
+        dateTime[Calendar.DAY_OF_MONTH] = 16
+        dateTime[Calendar.MONTH] = 12
+        dateTime[Calendar.YEAR] = 2021
 
         val dateFormatter = SimpleDateFormat("dd LLLL yyyy, HH:mm", Locale.getDefault())
 
 
         //When user inputs 16 in hour and 30 in minutes
-        viewModel.selectDate(time[Calendar.DAY_OF_MONTH],time[Calendar.MONTH],time[Calendar.YEAR])
-        viewModel.selectHourMinute(time[Calendar.HOUR_OF_DAY],time[Calendar.MINUTE])
+        viewModel.selectDate(dateTime[Calendar.DAY_OF_MONTH],dateTime[Calendar.MONTH],dateTime[Calendar.YEAR])
+        viewModel.selectHourMinute(dateTime[Calendar.HOUR_OF_DAY],dateTime[Calendar.MINUTE])
         val result = viewModel.dateString.getOrAwaitValueTest()
-
+        assertThat(result == dateFormatter.format(dateTime.time)).isTrue()
     }*/
 
 
