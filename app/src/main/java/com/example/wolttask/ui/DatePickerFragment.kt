@@ -24,11 +24,12 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
-        c.add(Calendar.DATE, 0) // Add 0 days to Calendar
+        c.add(Calendar.DATE, 0) // set past calendar dates to 0
 
-        // Create a new instance of DatePickerDialog and return ii
+        // Create a new instance of DatePickerDialog and return datePickerDialog
         val datePickerDialog = DatePickerDialog(requireActivity(), this, year, month, day)
         val newDate = c.time
+        // set minimum date that the user can select to today
         datePickerDialog.datePicker.minDate = newDate.time - newDate.time % (24 * 60 * 60 * 1000)
         return datePickerDialog
     }

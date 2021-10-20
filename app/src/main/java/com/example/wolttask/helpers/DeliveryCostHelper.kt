@@ -32,7 +32,7 @@ class DeliveryCostHelper {
             }
         }
 
-    fun deliveryFeeNormalization(deliveryFee: Float) = deliveryFee.coerceIn(0f, 15f)
+    fun normalizeDeliveryFee(deliveryFee: Float) = deliveryFee.coerceIn(0f, 15f)
 
     fun cartValueHundredOrGreater(cartValue: Float) = cartValue >= 100
 
@@ -59,7 +59,7 @@ class DeliveryCostHelper {
             (getCartValueSurcharge(cartValue) + getAmountOfItemsSurcharge(amountOfItems) + travelDistanceFeeCalculator(
                 deliveryDistance
             )).let {
-                deliveryFeeNormalization(
+                normalizeDeliveryFee(
                     rushHourMultiplier(
                         isRushHour(
                             time,

@@ -74,27 +74,27 @@ class DeliveryCostHelperTest {
     }
 
     @Test
-    fun deliveryFeeNormalizationTest() {
+    fun normalizeDeliveryFeeTest() {
 
         // delivery fee is 10€
         var deliveryFee = 10f
-        Assert.assertEquals(deliveryCostHelper.deliveryFeeNormalization(deliveryFee), 10f)
+        Assert.assertEquals(deliveryCostHelper.normalizeDeliveryFee(deliveryFee), 10f)
 
         // delivery fee is 15€
         deliveryFee = 15f
-        Assert.assertEquals(deliveryCostHelper.deliveryFeeNormalization(deliveryFee), 15f)
+        Assert.assertEquals(deliveryCostHelper.normalizeDeliveryFee(deliveryFee), 15f)
 
         // delivery fee is 18€
         deliveryFee = 18f
-        Assert.assertEquals(deliveryCostHelper.deliveryFeeNormalization(deliveryFee), 15f)
+        Assert.assertEquals(deliveryCostHelper.normalizeDeliveryFee(deliveryFee), 15f)
 
         // delivery fee is 0€
         deliveryFee = 0f
-        Assert.assertEquals(deliveryCostHelper.deliveryFeeNormalization(deliveryFee), 0f)
+        Assert.assertEquals(deliveryCostHelper.normalizeDeliveryFee(deliveryFee), 0f)
 
         // delivery fee is -18€
         deliveryFee = -18f
-        Assert.assertEquals(deliveryCostHelper.deliveryFeeNormalization(deliveryFee), 0f)
+        Assert.assertEquals(deliveryCostHelper.normalizeDeliveryFee(deliveryFee), 0f)
 
     }
 
