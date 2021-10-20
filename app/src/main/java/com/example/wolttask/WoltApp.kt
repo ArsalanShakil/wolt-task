@@ -4,7 +4,7 @@
  *
  */
 
-package com.example.wolttask.dependencyinjection
+package com.example.wolttask
 
 import android.app.Application
 import org.koin.android.ext.koin.androidContext
@@ -15,7 +15,7 @@ class WoltApp: Application() {
         super.onCreate()
         startKoin {
             androidContext( this@WoltApp)
-            modules(modules)
+            modules(com.example.wolttask.dependencyinjection.modules)
         }
     }
 }
