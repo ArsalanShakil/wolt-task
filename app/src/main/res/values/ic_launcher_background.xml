@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021 by Arsalan Shakil.
+  ~ Wolt task project.
+  ~
+  -->
+
 <resources>
     <color name="ic_launcher_background">#00C2E8</color>
 </resources>

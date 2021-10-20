@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021 by Arsalan Shakil.
+ * Wolt task project.
+ *
+ */
+
 package com.example.wolttask.ui.deliveryfee
 
 import androidx.lifecycle.MediatorLiveData
@@ -7,7 +13,8 @@ import com.example.wolttask.helpers.DeliveryCostHelper
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DeliveryFeeCalculatorViewModel(private val deliveryCostHelper : DeliveryCostHelper) : ViewModel() {
+class DeliveryFeeCalculatorViewModel(private val deliveryCostHelper: DeliveryCostHelper) :
+    ViewModel() {
     val cartValue = MutableLiveData("")
     val deliveryDistance = MutableLiveData("")
     val amountOfItems = MutableLiveData("")
@@ -61,23 +68,27 @@ class DeliveryFeeCalculatorViewModel(private val deliveryCostHelper : DeliveryCo
         }
     }
 
-     fun getEnabled(
+    fun getEnabled(
         cartValue: String,
         deliveryDistance: String,
         amountOfItems: String,
         date: String
-    ) =
-        if (cartValue.isNotBlank() && deliveryDistance.isNotBlank() && amountOfItems.isNotBlank() && date.isNotBlank()) {
+    ): Boolean {
+        return if (cartValue.isNotBlank() && deliveryDistance.isNotBlank() && amountOfItems.isNotBlank() && date.isNotBlank()) {
             cartValue != "." &&
-            ((cartValue.toFloat() > 0f && cartValue.toFloat().toInt() == 0) || cartValue.toFloat().toInt() != 0) &&
-            (cartValue.toFloat() != 0f) &&
-            (deliveryDistance.toFloat().toInt() != 0) &&
-            (deliveryDistance.toFloat() != 0f) &&
-            (amountOfItems.toFloat().toInt() != 0) &&
-            (amountOfItems.toFloat() != 0f)
+                    ((cartValue.toFloat() > 0f && cartValue.toFloat()
+                        .toInt() == 0) || cartValue.toFloat().toInt() != 0) &&
+                    (cartValue.toFloat() != 0f) &&
+                    (deliveryDistance.toFloat().toInt() != 0) &&
+                    (deliveryDistance.toFloat() != 0f) &&
+                    (amountOfItems.toFloat().toInt() != 0) &&
+                    (amountOfItems.toFloat() != 0f)
 
-        } else false
+        } else {
+            false
+        }
 
+    }
 
     fun calculateFee() {
         totalFee =

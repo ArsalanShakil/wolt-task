@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021 by Arsalan Shakil.
+ * Wolt task project.
+ *
+ */
+
 package com.example.wolttask.ui
 
 import androidx.appcompat.app.AppCompatActivity

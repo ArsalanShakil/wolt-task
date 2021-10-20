@@ -1,3 +1,9 @@
+<!--
+  ~ Copyright (c) 2021 by Arsalan Shakil.
+  ~ Wolt task project.
+  ~
+  -->
+
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.WoltTask" parent="Theme.MaterialComponents.DayNight.NoActionBar">

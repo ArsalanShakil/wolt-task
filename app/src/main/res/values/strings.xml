@@ -1,3 +1,9 @@
+<!--
+  ~ Copyright (c) 2021 by Arsalan Shakil.
+  ~ Wolt task project.
+  ~
+  -->
+
 <resources>
     <string name="app_name">WoltTask</string>
     <string name="delivery_fee_calculator_string">Delivery fee Calculator</string>
@@ -12,6 +18,6 @@
     <string name="delivery_price">Delivery price :</string>
     <string name="delivery_price_value">Delivery price : %.2f€</string>
     <string name="select_a_time">Select a time</string>
-    <string name="date_time"><![CDATA[Date & time]]></string>
-    <string name="please_fill_all_fields">Please fill all fields</string>
+    <string name="date_time">Date &amp; time</string>
+    <string name="please_fill_all_fields">Please fill all fields and input fields cannot be 0</string>
 </resources>

@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021 by Arsalan Shakil.
+ * Wolt task project.
+ *
+ */
+
 package com.example.wolttask.helpers
 
 import java.util.*
@@ -51,20 +57,19 @@ class DeliveryCostHelper {
         if (cartValueHundredOrGreater(cartValue)) {
             0f
         } else {
-            val totalDeliveryFees =
-                getCartValueSurcharge(cartValue) + getAmountOfItemsSurcharge(amountOfItems) + travelDistanceFeeCalculator(
-                    deliveryDistance
+            (getCartValueSurcharge(cartValue) + getAmountOfItemsSurcharge(amountOfItems) + travelDistanceFeeCalculator(
+                deliveryDistance
+            )).let {
+                deliveryFeeNormalization(
+                    rushHourMultiplier(
+                        isRushHour(
+                            time,
+                            time[Calendar.HOUR_OF_DAY],
+                            time[Calendar.MINUTE],
+                            time[Calendar.SECOND]
+                        ), it
+                    )
                 )
-            when (isRushHour(
-                time,
-                time[Calendar.HOUR_OF_DAY],
-                time[Calendar.MINUTE],
-                time[Calendar.SECOND]
-            )) {
-
-                true -> deliveryFeeNormalization(rushHourMultiplier(true, totalDeliveryFees))
-                false -> deliveryFeeNormalization(totalDeliveryFees)
             }
         }
-
 }

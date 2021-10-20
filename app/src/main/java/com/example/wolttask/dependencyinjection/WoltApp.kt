@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021 by Arsalan Shakil.
+ * Wolt task project.
+ *
+ */
+
 package com.example.wolttask.dependencyinjection
 
 import android.app.Application
@@ -9,7 +15,7 @@ class WoltApp: Application() {
         super.onCreate()
         startKoin {
             androidContext( this@WoltApp)
-            modules(com.example.wolttask.modules)
+            modules(modules)
         }
     }
 }
