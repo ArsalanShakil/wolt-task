@@ -53,8 +53,7 @@ class DeliveryCostHelper {
         deliveryDistance: Int,
         amountOfItems: Int,
         time: Calendar
-    ) =
-        if (cartValueHundredOrGreater(cartValue)) {
+    ) = if (cartValueHundredOrGreater(cartValue)) {
             0f
         } else {
             (getCartValueSurcharge(cartValue) + getAmountOfItemsSurcharge(amountOfItems) + travelDistanceFeeCalculator(
